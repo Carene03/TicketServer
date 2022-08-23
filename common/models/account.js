@@ -12,8 +12,8 @@ module.exports = function(Account) {
       },
       include: 'appUser',
     }, function(error, account) {
-      if (error) next();
-      if (!account) next(BaseError.userDoesNotExist());
+      if (error) return next();
+      if (!account) return next(BaseError.userDoesNotExist());
       else {
         account.hasPassword(ctx.args.credentials.password, function(err, isMatch) {
           if (err) {

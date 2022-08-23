@@ -5,7 +5,7 @@
 
 function Constants() { }
 
-Constants.tables = ['Account', 'AppUser', 'Reply', 'SupportTicket', 'Files'];
+Constants.tables = ['Account', 'AppUser', 'Reply', 'SupportTicket', 'Filef', 'RoleMapping', 'AccessToken'];
 
 Constants.roles = [
     {'name': 'admin', 'description': 'admin'},
@@ -16,14 +16,14 @@ Constants.accounts = [
     {
         'realm': 'rlm',
         'username': 'carene',
-        'email': 'andrisoamiranacaren03@gmail.com',
+        'email': 'andrisoamiranacarene03@gmail.com',
         'emailVerified': true,
         'password': '123456',
     },
     {
         'realm': 'rlm',
         'username': 'mirana',
-        'email': 'andrisoamiranacaren03@gmail.com',
+        'email': 'andrisoamiranacarene03@gmail.com',
         'emailVerified': true,
         'password': '789123',
     },

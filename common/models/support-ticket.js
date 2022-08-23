@@ -23,9 +23,13 @@ module.exports = function(Supportticket) {
               if (error) return cb(err);
               if (!success) return cb();
               if (success.name === 'admin') {
-                return app.models.Supportticket.find();
+                app.models.Supportticket.find({where: {status: true}},
+                    function(err, success) {
+                        if (err) return cb();
+                        return success;
+                    });
               } else {
-                app.models.Supportticket.find({where: {appUserId: userId}},
+                app.models.Supportticket.find({where: {appUserId: userId, status: true}},
                     function(err, success) {
                         if (err) return cb();
                         return success;

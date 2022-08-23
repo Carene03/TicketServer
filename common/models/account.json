@@ -13,6 +13,16 @@
       "model": "Role",
       "foreignKey": "principalId",
       "through": "RoleMapping"
+    },
+    "appUser": {
+      "type": "hasOne",
+      "model": "AppUser",
+      "foreignKey": "accountId"
+    },
+    "accessToken": {
+      "type": "hasOne",
+      "model": "AccessToken",
+      "foreignKey": "accountId"
     }
   },
   "acls": [],

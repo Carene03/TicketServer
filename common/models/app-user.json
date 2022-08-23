@@ -5,6 +5,9 @@
   "options": {
     "validateUpsert": true
   },
+  "mixins": {
+    "Date": {}
+  },
   "properties": {
     "firstName": {
       "type": "string",
@@ -13,6 +16,11 @@
     "lastName": {
       "type": "string",
       "required": true
+    },
+    "locked": {
+      "type": "boolean",
+      "required": true,
+      "default": false
     }
   },
   "validations": [],
