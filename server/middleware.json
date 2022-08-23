@@ -24,14 +24,20 @@
     },
     "cors": {
       "params": {
-        "origin": true,
+        "origin": "*",
         "credentials": true,
         "maxAge": 86400
       }
     }
   },
   "session": {},
-  "auth": {},
+  "auth": {
+    "loopback#token": {
+      "params": {
+        "currentUserLiteral": "me"
+      }
+    }
+  },
   "parse": {},
   "routes": {
     "loopback#rest": {

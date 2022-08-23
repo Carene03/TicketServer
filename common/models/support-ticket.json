@@ -41,7 +41,7 @@
     {
       "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "role",
+      "principalId": "user",
       "permission": "ALLOW",
       "property": "create"
     },
