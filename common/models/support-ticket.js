@@ -25,7 +25,7 @@ module.exports = function(Supportticket) {
               if (success.name === 'admin') {
                 return app.models.Supportticket.find();
               } else {
-                app.models.Supportticket.findOne({where: {appUserId: userId}},
+                app.models.Supportticket.find({where: {appUserId: userId}},
                     function(err, success) {
                         if (err) return cb();
                         return success;
