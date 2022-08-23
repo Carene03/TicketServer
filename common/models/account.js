@@ -3,10 +3,10 @@
 
 const BaseError = require('../utils/baseError');
 const app = require('../../server/server');
-
+const AccountModel = app.models.Account;
 module.exports = function(Account) {
   Account.afterRemoteError('login', (ctx, next) => {
-    app.models.Account.findOne({
+    AccountModel.findOne({
       where: {
         username: ctx.args.credentials.username,
       },

@@ -2,6 +2,8 @@
 /* eslint-disable indent */
 'use strict';
 const app = require('../../server/server');
+const RoleMapping = app.models.RoleMapping;
+const SupportticketModel = app.models.Supportticket;
 
 module.exports = function(Supportticket) {
     Supportticket.remoteMethod('getTicket', {
@@ -13,23 +15,23 @@ module.exports = function(Supportticket) {
       });
     Supportticket.getTicket = (options, cb) => {
         const userId = options.accessToken.__data.id;
-        app.models.RollMapping.findOne({where: {principalid: userId}},
+        RoleMapping.findOne({where: {principalid: userId}},
         function(err, appUserRole) {
             if (err) return cb(err);
-            if (!appUserRole) return cb();
+            if (!appUserRole) console.log(cb());
             const roleId = appUserRole.__data.roleId;
             app.models.Role.find({where: {id: roleId}},
             function(error, success) {
               if (error) return cb(err);
               if (!success) return cb();
               if (success.name === 'admin') {
-                app.models.Supportticket.find({where: {status: true}},
+                SupportticketModel.find({where: {status: true}},
                     function(err, success) {
                         if (err) return cb();
                         return success;
                     });
               } else {
-                app.models.Supportticket.find({where: {appUserId: userId, status: true}},
+                SupportticketModel.find({where: {appUserId: userId, status: true}},
                     function(err, success) {
                         if (err) return cb();
                         return success;
