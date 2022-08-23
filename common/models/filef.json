@@ -1,5 +1,5 @@
 {
-  "name": "File",
+  "name": "Filef",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {

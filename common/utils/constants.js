@@ -5,7 +5,7 @@
 
 function Constants() { }
 
-Constants.tables = ['Account', 'AppUser', 'Reply', 'SupportTicket', 'File'];
+Constants.tables = ['Account', 'AppUser', 'Reply', 'SupportTicket', 'Files'];
 
 Constants.roles = [
     {'name': 'admin', 'description': 'admin'},
