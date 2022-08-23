@@ -1,0 +1,29 @@
+{
+  "name": "File",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "mixins": {
+    "Date": {}
+  },
+  "properties": {
+    "file": {
+      "type": "string",
+      "required": false
+    },
+    "recource": {
+      "type": "string",
+      "required": true
+    },
+    "recourceId": {
+      "type": "number",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {},
+  "acls": [],
+  "methods": {}
+}
