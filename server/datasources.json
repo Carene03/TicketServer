@@ -1,0 +1,16 @@
+{
+  "db": {
+    "name": "db",
+    "connector": "memory"
+  },
+  "ticket": {
+    "host": "localhost",
+    "port": 5432,
+    "url": "",
+    "database": "ticket",
+    "password": "20482048",
+    "name": "ticket",
+    "user": "postgres",
+    "connector": "postgresql"
+  }
+}

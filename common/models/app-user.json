@@ -1,0 +1,38 @@
+{
+  "name": "AppUser",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "firstName": {
+      "type": "string",
+      "required": true
+    },
+    "lastName": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "account": {
+      "type": "belongsTo",
+      "model": "Account",
+      "foreignKey": "accountId"
+    },
+    "tickets": {
+      "type": "hasMany",
+      "model": "SupportTicket",
+      "foreignKey": "appUserId"
+    },
+    "replies": {
+      "type": "hasMany",
+      "model": "Reply",
+      "foreignKey": "appUserId"
+    }
+  },
+  "acls": [],
+  "methods": {}
+}
