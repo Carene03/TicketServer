@@ -12,7 +12,6 @@ module.exports = function(SupportTicket) {
           {arg: 'data', type: 'array'},
         {arg: 'Content-Type', type: 'string', http: {target: 'header'}},
       ],
-        description: 'role user change with success',
         http: {'verb': 'get', 'path': '/getTicket'},
       });
     SupportTicket.getTicket = (options, cb) => {
