@@ -25,6 +25,14 @@
       "foreignKey": "accountId"
     }
   },
-  "acls": [],
+  "acls": [
+    {
+      "accessType":"*",
+      "principalType":,
+      "principalId":,
+      "permission": "ALLOW",
+      "property": "__get__role"
+    }
+  ],
   "methods": {}
 }
