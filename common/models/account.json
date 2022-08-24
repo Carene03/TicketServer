@@ -28,8 +28,8 @@
   "acls": [
     {
       "accessType":"*",
-      "principalType":,
-      "principalId":,
+      "principalType":"ROLE",
+      "principalId":"$everyone",
       "permission": "ALLOW",
       "property": "__get__role"
     }
