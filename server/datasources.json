@@ -6,17 +6,11 @@
   "d2u0c32pt92g2": {
     "host": "ec2-44-205-112-253.compute-1.amazonaws.com",
     "port": 5432,
-    "url": "",
+    "url": "postgres://hjjnjxdyfybaok:324dd5900068b9b64160003cfde52a63c42c725dcb923f4fe95d137ba7cfe37c@ec2-44-205-112-253.compute-1.amazonaws.com:5432/d2u0c32pt92g2",
     "database": "d2u0c32pt92g2",
     "password": "324dd5900068b9b64160003cfde52a63c42c725dcb923f4fe95d137ba7cfe37c",
     "name": "d2u0c32pt92g2",
     "user": "hjjnjxdyfybaok",
     "connector": "postgresql"
-  },
-  "SwaggerDS": {
-    "name": "SwaggerDS",
-    "connector": "swagger",
-    "spec": "http://petstore.swagger.io/v2/swagger.json",
-    "authorizations": {}
   }
 }
