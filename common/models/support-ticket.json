@@ -41,16 +41,10 @@
     {
       "accessType": "*",
       "principalType": "ROLE",
-      "principalId": "user",
-      "permission": "ALLOW",
-      "property": "create"
-    },
-    {
-      "accessType": "*",
-      "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "ALLOW",
       "property": [
+        "create",
         "find",
         "findById",
         "__findById__replies",

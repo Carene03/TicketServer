@@ -4,6 +4,22 @@
 const app = require('../../server/server');
 
 module.exports = function(SupportTicket) {
+  SupportTicket.beforeRemote('create', function(ctx, modelInstance, next) {
+    if (ctx.req.accessToken) {
+      app.models.RoleMapping.findOne({where: {principalId: ctx.req.accessToken.__data.userId}, include: 'role'},
+        function(err, appUserRole) {
+            if (err) return next(err);
+            if (!appUserRole) console.log(next());
+            if (appUserRole.role().name === 'user') {
+              next();
+            } else {
+              next(new Error('do note have access to create ticket'));
+            }
+        });
+    } else {
+      next(new Error('must be logged in to update'));
+    }
+  });
     SupportTicket.remoteMethod('getTicket', {
         accepts: [
           {arg: 'options', type: 'object', http: 'optionsFromRequest'},
