@@ -8,10 +8,7 @@ module.exports = function(SupportTicket) {
         accepts: [
           {arg: 'options', type: 'object', http: 'optionsFromRequest'},
         ],
-        returns: [
-          {arg: 'data', type: 'array'},
-        {arg: 'Content-Type', type: 'string', http: {target: 'header'}},
-      ],
+        returns: {arg: 'data', type: 'array'},
         http: {'verb': 'get', 'path': '/getTicket'},
       });
     SupportTicket.getTicket = (options, cb) => {
@@ -24,16 +21,15 @@ module.exports = function(SupportTicket) {
               app.models.SupportTicket.find({where: {status: true}},
                 function(err, success) {
                     if (err) return cb();
-                    return success;
+                    return cb(null, success);
                 });
             } else {
               app.models.SupportTicket.find({where: {appUserId: userId, status: true}},
                 function(err, success) {
                     if (err) return cb();
-                    return success;
+                    return cb(null, success);
                 });
             }
-            return cb();
         });
     };
     SupportTicket.remoteMethod('closeTicket', {
