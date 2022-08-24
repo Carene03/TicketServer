@@ -12,24 +12,27 @@ module.exports = function(SupportTicket) {
         http: {'verb': 'get', 'path': '/getTicket'},
       });
     SupportTicket.getTicket = (options, cb) => {
-        const userId = options.accessToken.__data.userId;
-        app.models.RoleMapping.findOne({where: {principalid: userId}, include: 'role'},
+        app.models.RoleMapping.findOne({where: {principalId: options.accessToken.__data.userId}},
         function(err, appUserRole) {
             if (err) return cb(err);
             if (!appUserRole) console.log(cb());
-            if (appUserRole.role().name === 'admin') {
-              app.models.SupportTicket.find({where: {status: true}},
-                function(err, success) {
-                    if (err) return cb();
-                    return cb(null, success);
-                });
-            } else {
-              app.models.SupportTicket.find({where: {appUserId: userId, status: true}},
-                function(err, success) {
-                    if (err) return cb();
-                    return cb(null, success);
-                });
-            }
+            app.models.Role.findOne({where: {id: appUserRole.roleId}},
+              function(err, role) {
+                if (err) return cb(err);
+                if (role.name === 'admin') {
+                  app.models.SupportTicket.find({where: {status: true}},
+                    function(err, success) {
+                        if (err) return cb();
+                        return cb(null, success);
+                    });
+                } else {
+                  app.models.SupportTicket.find({where: {appUserId: options.accessToken.__data.userId, status: true}},
+                    function(err, success) {
+                        if (err) return cb();
+                        return cb(null, success);
+                    });
+                }
+              });
         });
     };
     SupportTicket.remoteMethod('closeTicket', {
@@ -37,7 +40,6 @@ module.exports = function(SupportTicket) {
         {arg: 'data', type: 'object', required: true, http: {source: 'body'}},
         {arg: 'options', type: 'object', http: 'optionsFromRequest'},
       ],
-      description: 'role user change with success',
       http: {'verb': 'put', 'path': '/closeTicket'},
     });
     SupportTicket.closeTicket = (data, options, cb) => {
