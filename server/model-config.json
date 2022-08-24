@@ -17,7 +17,7 @@
     "dataSource": "db"
   },
   "AccessToken": {
-    "dataSource": "ticket",
+    "dataSource": "d2u0c32pt92g2",
     "public": false
   },
   "ACL": {
@@ -25,7 +25,7 @@
     "public": false
   },
   "RoleMapping": {
-    "dataSource": "ticket",
+    "dataSource": "d2u0c32pt92g2",
     "public": false,
     "options": {
       "strictObjectIDCoercion": true
@@ -36,23 +36,23 @@
     "public": false
   },
   "Account": {
-    "dataSource": "ticket",
+    "dataSource": "d2u0c32pt92g2",
     "public": true
   },
   "AppUser": {
-    "dataSource": "ticket",
+    "dataSource": "d2u0c32pt92g2",
     "public": true
   },
   "SupportTicket": {
-    "dataSource": "ticket",
+    "dataSource": "d2u0c32pt92g2",
     "public": true
   },
   "Reply": {
-    "dataSource": "ticket",
+    "dataSource": "d2u0c32pt92g2",
     "public": true
   },
   "Filef": {
-    "dataSource": "ticket",
+    "dataSource": "d2u0c32pt92g2",
     "public": true
   }
 }
