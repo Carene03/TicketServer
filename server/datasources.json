@@ -12,11 +12,5 @@
     "name": "d2u0c32pt92g2",
     "user": "hjjnjxdyfybaok",
     "connector": "postgresql"
-  },
-  "SwaggerDS": {
-    "name": "SwaggerDS",
-    "connector": "swagger",
-    "spec": "http://petstore.swagger.io/v2/swagger.json",
-    "authorizations": {}
-}
+  }
 }
