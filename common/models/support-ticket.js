@@ -2,43 +2,55 @@
 /* eslint-disable indent */
 'use strict';
 const app = require('../../server/server');
-const RoleMapping = app.models.RoleMapping;
-const SupportticketModel = app.models.Supportticket;
 
-module.exports = function(Supportticket) {
-    Supportticket.remoteMethod('getTicket', {
+module.exports = function(SupportTicket) {
+    SupportTicket.remoteMethod('getTicket', {
         accepts: [
           {arg: 'options', type: 'object', http: 'optionsFromRequest'},
         ],
+        returns: [
+          {arg: 'data', type: 'array'},
+        {arg: 'Content-Type', type: 'string', http: {target: 'header'}},
+      ],
         description: 'role user change with success',
         http: {'verb': 'get', 'path': '/getTicket'},
       });
-    Supportticket.getTicket = (options, cb) => {
-        const userId = options.accessToken.__data.id;
-        RoleMapping.findOne({where: {principalid: userId}},
+    SupportTicket.getTicket = (options, cb) => {
+        const userId = options.accessToken.__data.userId;
+        app.models.RoleMapping.findOne({where: {principalid: userId}, include: 'role'},
         function(err, appUserRole) {
             if (err) return cb(err);
             if (!appUserRole) console.log(cb());
-            const roleId = appUserRole.__data.roleId;
-            app.models.Role.find({where: {id: roleId}},
-            function(error, success) {
-              if (error) return cb(err);
-              if (!success) return cb();
-              if (success.name === 'admin') {
-                SupportticketModel.find({where: {status: true}},
-                    function(err, success) {
-                        if (err) return cb();
-                        return success;
-                    });
-              } else {
-                SupportticketModel.find({where: {appUserId: userId, status: true}},
-                    function(err, success) {
-                        if (err) return cb();
-                        return success;
-                    }
-                );
-              }
-            });
+            if (appUserRole.role().name === 'admin') {
+              app.models.SupportTicket.find({where: {status: true}},
+                function(err, success) {
+                    if (err) return cb();
+                    return success;
+                });
+            } else {
+              app.models.SupportTicket.find({where: {appUserId: userId, status: true}},
+                function(err, success) {
+                    if (err) return cb();
+                    return success;
+                });
+            }
+            return cb();
         });
     };
+    SupportTicket.remoteMethod('closeTicket', {
+      accepts: [
+        {arg: 'data', type: 'object', required: true, http: {source: 'body'}},
+        {arg: 'options', type: 'object', http: 'optionsFromRequest'},
+      ],
+      description: 'role user change with success',
+      http: {'verb': 'put', 'path': '/closeTicket'},
+    });
+    SupportTicket.closeTicket = (data, options, cb) => {
+    if (!data) return cb();
+    app.models.SupportTicket.upsertWithWhere({id: data.id}, data, function(error, success) {
+      if (error) return cb();
+      return success();
+    });
+    cb();
+  };
 };

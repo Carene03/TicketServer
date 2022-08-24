@@ -11,6 +11,7 @@ const Role = app.models.Role;
 const Account = app.models.Account;
 const AppUser = app.models.AppUser;
 const RoleMapping = app.models.RoleMapping;
+const SupportTicket = app.models.SupportTicket;
 
 module.exports = () => {
   async.series({
@@ -58,6 +59,18 @@ module.exports = () => {
       async.each(constants.roleAccount, (roleMapping, cb) => {
         RoleMapping.findOrCreate({
           where: {principalId: roleMapping.principalId}}, roleMapping, (err, created) => {
+            if (err) throw err;
+            return cb();
+          });
+      }, (err, success) => {
+        if (err) throw err;
+        return doneTask();
+      });
+    },
+    createSupportTicket: (doneTask) => {
+      async.each(constants.supportTickets, (ticket, cb) => {
+        SupportTicket.findOrCreate({
+          where: {title: ticket.title}}, ticket, (err, created) => {
             if (err) throw err;
             return cb();
           });

@@ -54,7 +54,8 @@
         "find",
         "findById",
         "__findById__replies",
-        "__get__replies"
+        "__get__replies",
+        "getTicket"
       ]
     }
   ],
